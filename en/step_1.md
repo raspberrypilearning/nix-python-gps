@@ -1,6 +1,6 @@
 ## Using GPS
 
-- Most GPS receivers talk to your computer via **serial communication**. Do do this, they use a specific port on your computer, and you will need to find out which port your receiver is using.
+- Most GPS receivers talk to your computer via **serial communication**. To do this, they use a specific port on your computer, and you will need to find out which port your receiver is using.
 
 - With the receiver not connected, open up a terminal window and type the following command:
 
@@ -23,15 +23,15 @@
   ttyACM0
   ```
 
-- The device needed is the one starting with `tty`, so in this case it is `ttyACM0`.
+- The device you're interested in is the one starting with `tty`, so in this case it is `ttyACM0`.
 
-- To make sure the device can be read, try typing the following into the terminal:
+- To make sure the device can be read, type the following into the terminal window:
 
 	```bash
 	cat /dev/ttyACM0
 	```
 
-- You should see something like the following:
+- You should now see a continuous stream of data from the device, looking similar to this:
 
 ```
 $GPRMC,,V,,,,,,,,,,N*53
@@ -45,11 +45,11 @@ $GPGGA,,,,,,0,00,99.99,,,,,,*48
 $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30
 $GPGLL,,,,,,V,N*64
 ```
-- If you don't see any information displayed, have a look at the troubleshooting section below.
+- If you don't see a stream of data, or nothing at all, have a look at the troubleshooting section below.
 
-- The data you see in your terminal contains your longitude, latitude, altitude, and the current time. You can use Python to make a little more sense of this.
+- The data you see in your terminal window contains your longitude, latitude, altitude, and the current time. You can use Python to make a little more sense of this.
 
-- Firstly, download a small file that contains the necessary program.
+- Firstly, download a small file that contains the necessary Python program we've written for you.
 
 	```bash
 	wget https://raw.githubusercontent.com/raspberrypilearning/piGPS/master/piGPS.py
@@ -60,7 +60,7 @@ $GPGLL,,,,,,V,N*64
 	```bash
 	sudo pip3 install pyserial
 	```
-- Now make a new directory for your project, and then move the downloaded code to your new directory.
+- Now make a new directory for your project, and then move the downloaded code to that directory.
 
 	```bash
 	mkdir my_cool_project
@@ -81,13 +81,13 @@ print(gps.alt)
 
 ## Troubleshooting
 
-- On some *nix systems you may not have access to the `/dev/ttyACM0`. Change your permissions first, and then log out and back in again.
+- If you don't see anything after using the `cat /dev/ttyACM0` command, this may be because you do not have access to the `/dev/ttyACM0` device. This can be the case on some *nix systems. To gain access, you can change your permissions first using the command below, and then log out and back in again.
 
 ```bash
 sudo usermod -a -G dialout your_username
 ```
 
-- Sometimes you might not see a continuous stream of data. If this is the case, try the following:
+- If you do not see a continuous stream of data after using the `cat /dev/ttyACM0` command, it may be that your computer is missing a piece of software. Try the following and see whether that fixes your problem.
 
 ```bash
 sudo apt install cu
