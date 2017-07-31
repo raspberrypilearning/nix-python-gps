@@ -30,20 +30,23 @@
 	```bash
 	cat /dev/ttyACM0
 	```
-**What should I expect to see now?**
 
-**See comments on Waffle regarding troubleshooting**
-	- On some 'nix systems you may not have access to the `/dev/ttyACM0`. Change your permissions first, and then log out and back in again.
-	```bash
-	sudo usermod -a -G dialout your_username
-	```
-	- Sometimes you might not see a continuous stream of data. If this is the case, try the following:
-	
-	```bash
-	sudo apt install cu
-	cu -l /dev/ttyACM0 -s 115200
-	```
- **Maybe add a screenshot of the terminal window?**
+- You should see something like the following:
+
+```
+$GPRMC,,V,,,,,,,,,,N*53
+$GPVTG,,,,,,,,,N*30
+$GPGGA,,,,,,0,00,99.99,,,,,,*48
+$GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30
+$GPGLL,,,,,,V,N*64
+$GPRMC,,V,,,,,,,,,,N*53
+$GPVTG,,,,,,,,,N*30
+$GPGGA,,,,,,0,00,99.99,,,,,,*48
+$GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30
+$GPGLL,,,,,,V,N*64
+```
+- If you don't see any information displayed, have a look at the troubleshooting section below.
+
 - The data you see in your terminal contains your longitude, latitude, altitude, and the current time. You can use Python to make a little more sense of this.
 
 - Firstly, download a small file that contains the necessary program.
@@ -57,7 +60,13 @@
 	```bash
 	sudo pip3 install pyserial
 	```
-**I think having both files in the same directory should be emphasized a bit more. Maybe say something like "move the file you downloaded to a new folder in which you will save the code you'll write to access the GPS data' plus command line code, etc.**
+- Now make a new directory for your project, and then move the downloaded code to your new directory.
+
+	```bash
+	mkdir my_cool_project
+	mv piGPS.py my_cool_project/,
+	```
+	
 - As long as the `piGPS.py` file is in the same directory as the code you are writing, you can now access all the data using a few simple lines of Python.
 
 ```python
@@ -68,4 +77,19 @@ print(gps.lon)
 print(gps.lat)
 print(gps.time)
 print(gps.alt)
+```
+
+## Troubleshooting
+
+- On some *nix systems you may not have access to the `/dev/ttyACM0`. Change your permissions first, and then log out and back in again.
+
+```bash
+sudo usermod -a -G dialout your_username
+```
+
+- Sometimes you might not see a continuous stream of data. If this is the case, try the following:
+
+```bash
+sudo apt install cu
+cu -l /dev/ttyACM0 -s 115200
 ```
