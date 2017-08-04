@@ -31,7 +31,7 @@
 	cat /dev/ttyACM0
 	```
 
-- You should now see a continuous stream of data from the device, looking similar to this:
+- You should now see a continuous stream of data from the device, similar to this:
 
 ```
 $GPRMC,,V,,,,,,,,,,N*53
@@ -81,7 +81,7 @@ print(gps.alt)
 
 ## Troubleshooting
 
-- If you don't see anything after using the `cat /dev/ttyACM0` command, this may be because you do not have access to the `/dev/ttyACM0` device. This can be the case on some *nix systems. To gain access, you can change your permissions first using the command below, and then log out and back in again.
+- If you don't see anything after using the `cat /dev/ttyACM0` command, this may be because you do not have access to the `/dev/ttyACM0` device. This can be the case on some *nix systems. To gain access, first change your permissions using the command below, and then log out and back in again.
 
 ```bash
 sudo usermod -a -G dialout your_username
