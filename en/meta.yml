@@ -1,0 +1,16 @@
+title: GPS with Python
+hero_image: images/banner.png
+description: Use Python to retrieve time, latitude, longitude and altitude from a GPS receiver
+original_url:
+theme: yellow
+duration: 1
+listed: false
+ingredient: true
+copyedit: true
+curriculum: 
+interests: 
+technologies: "python"
+site_areas:
+steps:
+  - title: using GPS
+
